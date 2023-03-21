@@ -1,4 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { forwardRef, useRef, useState } from 'react';
+
+const VideoPlayer = forwardRef(({width}, ref) => {
+    return <video ref={ref} width={width}>
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" />
+</video>
+});
 
 const Video = () => {
     const [isPlaying,setIsPlaying] = useState(false);
@@ -21,9 +27,7 @@ const Video = () => {
             <button onClick={playVideo}>{ isPlaying ? "pause" : "play" }</button>
             <br />
             <br />
-            <video ref={videoRef} width='400'>
-                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" />
-            </video>
+            <VideoPlayer width='400' ref={videoRef} />
         </div>
     );
 };
