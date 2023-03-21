@@ -1,9 +1,15 @@
 import './App.css';
+import { Input } from './component/input';
+import { Video } from './component/videoPlayer';
+
+
+
 
 function App() {
   return (
     <div className="App">
-      React Examples
+      {/* <Input/> */}
+      <Video/>
     </div>
   );
 }
