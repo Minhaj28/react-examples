@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormInput } from '../formInput';
 
 import './Login.css';
 import { authenticate } from './LoginServices';
@@ -28,14 +29,18 @@ const Login = () => {
     return (
         <div className='login'>
             <form action="" className='loginForm' onSubmit={handleLogin}>
-                <div className="formInput">
-                    <label>User ID: </label>
-                    <input onChange={handleOnChange} name='email' type="email" />
-                </div>
-                <div className="formInput">
-                    <label>Password: </label>
-                    <input onChange={handleOnChange} name='password' type="password" />
-                </div>
+                <FormInput 
+                    label = 'User ID'
+                    name = 'email'
+                    //type = 'email'
+                    handleOnChange = {handleOnChange}
+                />
+                <FormInput 
+                    label = 'Password'
+                    name = 'password'
+                    type = 'password'
+                    handleOnChange = {handleOnChange}
+                />
                 <div className="formInput" id='submit'>
                     <input type="submit" value='Login' id='btn'/>
                 </div>
