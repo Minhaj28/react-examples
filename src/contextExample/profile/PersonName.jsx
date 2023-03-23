@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../context/UserContext";
 
-const UserPortfolio = ({ firstName, lastName, url }) => {
+const UserPortfolioLink = () => {
+  const { firstName, lastName, url } = useContext(UserContext);
   return (
     <a href={url}>
       {firstName} {lastName}
     </a>
   );
 };
-export const PersonName = ({ firstName, lastName,url }) => {
-  return (
-    <div>
-      <h1>{`Name: ${firstName} ${lastName}`}</h1>
-      <UserPortfolio firstName={firstName} lastName={lastName} url={url}/>
-    </div>
-  );
-};
+// export const PersonName = () => {
+//     const {firstName,lastName} = useContext(UserContext)
+//   return (
+//     <div>
+//       <h1>{`Name: ${firstName} ${lastName}`}</h1>
+//       <UserPortfolioLink />
+//     </div>
+//   );
+// };
+
+class PersonName extends React.Component {
+  render() {
+    const {firstName,lastName} = this.context;
+    return (
+      <div>
+        <h1>{`Name: ${firstName} ${lastName}`}</h1>
+        <UserPortfolioLink />
+      </div>
+    );
+  }
+}
+
+PersonName.contextType = UserContext;
+
+export { PersonName };

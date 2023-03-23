@@ -1,30 +1,43 @@
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Input } from './component/input';
 import { Login } from './component/login';
 import { Video } from './component/videoPlayer';
+import UserContext from './contextExample/context/UserContext';
+
 import { Profile } from './contextExample/profile';
 
-
-
-
 function App() {
-  const user = {
-    id: '1234',
-    firstName: 'Minhaj',
-    lastName: 'Uddin',
-    age: 24,
-    address: {
-        country: 'Bangladesh',
-        city: 'Jashore',
-    },
-    url: 'https://github.com/Minhaj28',
-}
+  const [user,setuser] = useState();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setuser({
+        id: '1234',
+        firstName: 'Minhaj',
+        lastName: 'Uddin',
+        age: 24,
+        address: {
+          country: 'Bangladesh',
+          city: 'Jashore',
+        },
+        url: 'https://github.com/Minhaj28',
+      })
+      
+    }, 2000);
+  },[])
+    
+  if(!user){
+    return <div>Loading.....</div>
+  }
   return (
     <div className="App">
       {/* <Input/> */}
       {/* <Video/> */}
       {/* <Login/> */}
-      <Profile user={user}/>
+      <UserContext.Provider value={user}>
+        <Profile />
+      </UserContext.Provider>
     </div>
   );
 }

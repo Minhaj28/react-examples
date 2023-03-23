@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '../context/UserContext';
 import { PersonName } from './PersonName';
 
 
 
-const PersonAge = ({age}) => <h2>Age: {age}</h2>
+const PersonAge = () => {
+    const {age} = useContext(UserContext)
+    return <div>
+        <h2>Age: {age}</h2>
+    </div>
+}
 
-const Profile = ({user}) => {
+const Profile = () => {
     
     return (
         <div>
-            <PersonName firstName={user.firstName} lastName={user.lastName} url={user.url}/>
-            <PersonAge age={user
-            .age
-            }/>
+            <PersonName/>
+            <PersonAge/>
         </div>
     );
 };
