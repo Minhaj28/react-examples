@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import UserContext from "./UserContext";
 
 const UserProvider = ({ children }) => {
-  const [user, setuser] = useState();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     setTimeout(() => {
-      setuser({
+      setUser({
         id: "1234",
         firstName: "Minhaj",
         lastName: "Uddin",
@@ -20,11 +20,15 @@ const UserProvider = ({ children }) => {
     }, 2000);
   }, []);
 
+  const increaseAge = () => {
+    setUser((user) => ({...user, age: user.age + 1}))
+  }
+
   if (!user) {
     return <div>Loading.....</div>;
   }
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{...user, increaseAge}}>{children}</UserContext.Provider>;
 };
 
 export default UserProvider;
